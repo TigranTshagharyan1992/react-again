@@ -9,9 +9,10 @@ const ListingNavigation = () => {
     }
     return (
         <Fragment>
-            <Button handleClick={handleClick} activeButton={buttonName==='Section1'}>Section1</Button>
-            <Button handleClick={handleClick} activeButton={buttonName==='Section2'}>Section2</Button>
-            <Button handleClick={handleClick} activeButton={buttonName==='Section3'}>Section3</Button>
+            <Button onClick={handleClick} activeButton={buttonName==='Section1'}>Section1</Button>
+            <Button onClickk={handleClick} activeButton={buttonName==='Section2'}>Section2</Button>
+            <Button onClick={handleClick} activeButton={buttonName==='Section3'}>Section3</Button>
+            <Button onClick={handleClick} activeButton={buttonName==='Effect'}>Effect</Button>
             <p>  {
                 buttonName ? differences[buttonName] : 'not important'
             }</p>

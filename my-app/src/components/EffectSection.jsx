@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import Button from "./ui/Button";
 import Modal from "./Modal/Modal";
+import {generateKey} from "../helper";
 
 const EffectSection = () => {
 
@@ -11,19 +12,23 @@ const EffectSection = () => {
     function openModal() {
         setShowModal(!showModal);
     }
-
-    async function getUsers() {
+    const getUsers = async ()=>{
         setLoading(true);
         const response = await fetch('https://jsonplaceholder.typicode.com/users');
         const users = await response.json();
         setUsers(users);
         setLoading(false);
     }
+   useMemo(()=>{
+        getUsers();
+    },[])
+
+
+
 
     useEffect(() => {
         getUsers();
     },[])
-
 
 
     return (
@@ -41,7 +46,7 @@ const EffectSection = () => {
             {loading && <p>Loading...</p>}
             {!loading &&  <ul>
                 {users.map((user,index) => {
-                    return <li key={index}>{user.name}</li>
+                    return <li key={generateKey(index)}>{user.name}</li>
                     })
                 }
 

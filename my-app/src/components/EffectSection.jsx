@@ -13,6 +13,9 @@ const EffectSection = () => {
     function openModal() {
         setShowModal(!showModal);
     }
+
+
+
     const getUsers = useCallback(async ()=>{
         setLoading(true);
         const response = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -23,7 +26,7 @@ const EffectSection = () => {
 
     useEffect(() => {
         getUsers();
-    },[])
+    },[getUsers])
 
 
     return (
@@ -42,6 +45,7 @@ const EffectSection = () => {
 
             {!loading &&
                 <>
+                    <br/>
                     <input type="text" {...input} />
                     <ul>
                         {users.map((user,index) => {
